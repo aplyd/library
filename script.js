@@ -25,18 +25,36 @@ function Book(title, author, year, read) {
 }
 
 function addBookToLibrary() {
-    let book = new Book();
     myLibrary.push(book);
 }
 
 //function to display books in table
 function render() {
-    for (i = 0; i < myLibrary.length; i++) {
-        let item = document.createElement('tr');
-        for (let prop in myLibrary) {
-            console.log(prop);
-        }
-    }
+    myLibrary.forEach(function (book, index) {
+        let tr = document.createElement('tr');
+
+        let tdindex = document.createElement('td');
+        tdindex.appendChild(document.createTextNode(index));
+        tr.appendChild(tdindex);
+
+        let tdtitle = document.createElement('td');
+        tdtitle.appendChild(document.createTextNode(book.title));
+        tr.appendChild(tdtitle);
+
+        let tdauthor = document.createElement('td');
+        tdauthor.appendChild(document.createTextNode(book.author));
+        tr.appendChild(tdauthor);
+
+        let tdyear = document.createElement('td');
+        tdyear.appendChild(document.createTextNode(book.year));
+        tr.appendChild(tdyear);
+
+        let tdread = document.createElement('td');
+        tdread.appendChild(document.createTextNode(book.read));
+        tr.appendChild(tdread);
+        
+        list.appendChild(tr);
+    })
 }
 
 render();
