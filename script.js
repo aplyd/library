@@ -1,4 +1,5 @@
 let list = document.getElementById('list');
+let formSpace = document.getElementById('formspace');
 
 let myLibrary = [
     {title: 'Atomic Habits', 
@@ -58,3 +59,34 @@ function render() {
 }
 
 render();
+
+function showForm() {
+    formSpace.innerHTML = '';
+    let bookFormTitle = document.createTextNode('h2');
+    bookFormTitle.textContent = 'book form';
+    formSpace.appendChild(bookFormTitle);
+
+    let titleInput = document.createElement('input');
+    titleInput.setAttribute('type', 'text');
+    titleInput.setAttribute('name', 'title');
+    titleInput.setAttribute('id', 'titleinput')
+    formSpace.appendChild(titleInput);
+
+    let authorInput = document.createElement('input');
+    authorInput.setAttribute('type', 'text');
+    authorInput.setAttribute('name', 'author');
+    authorInput.setAttribute('id', 'authorinput');
+    formSpace.appendChild(authorInput);
+
+    let yearInput = document.createElement('input');
+    yearInput.setAttribute('type', 'text');
+    yearInput.setAttribute('name', 'year');
+    yearInput.setAttribute('id', 'yearinput');
+    formSpace.appendChild(yearInput);
+
+    let readInput = document.createElement('input');
+    readInput.setAttribute('type', 'text');
+    readInput.setAttribute('name', 'read');
+    readInput.setAttribute('id', 'readinput');
+    formSpace.appendChild(readInput);
+}
