@@ -18,6 +18,11 @@
     margin: 0 auto;
 }
 
+thead {
+    background-color: black;
+    color: white;
+}
+
 #formspace {
     text-align: center;
     margin: 0 auto;

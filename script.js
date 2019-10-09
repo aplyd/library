@@ -27,17 +27,20 @@ function Book(title, author, year, read) {
     this.read = read;
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(book) {
     myLibrary.push(book);
+    render();
 }
 
 //function to display books in table
 function render() {
+        list.innerHTML = '';    
+
     myLibrary.forEach(function (book, index) {
         let tr = document.createElement('tr');
 
         let tdindex = document.createElement('td');
-        tdindex.appendChild(document.createTextNode(index));
+        tdindex.appendChild(document.createTextNode(index + 1));
         tr.appendChild(tdindex);
 
         let tdtitle = document.createElement('td');
@@ -62,20 +65,31 @@ function render() {
 
 render();
 
-function createformElement({elementName, elementType, attributeArray}) {
-    let element = document.createElement(`${elementType}`);
-    attributeArray.forEach(item => {
-        element.setAttribute(`${item.attributeName}`, `${item.value}`);
+function createformElement({elementType, attributeArray, elementText}) {
+    let element = document.createElement(elementType);
+    attributeArray.forEach(attribute => {
+        element.setAttribute(attribute.attributeName, attribute.value);
     })
-    
+    element.textContent = elementText;
     formSpace.appendChild(element);
 }
 
 function showForm() {
     formSpace.innerHTML = '';
 
+    //create title + input
     createformElement({
-        elementName: 'title',
+        elementType: 'text',
+        attributeArray: [
+            {
+                attributeName: 'id',
+                value: 'formtitle'
+            }
+        ],
+        elementText: 'title : '
+    })
+
+    createformElement({
         elementType: 'input',
         attributeArray: [
             {
@@ -93,70 +107,145 @@ function showForm() {
         ]
     })
 
-    // //title
-    // let formTitle = document.createElement('h3');
-    // formTitle.setAttribute('id', 'formtitle');
-    // formTitle.textContent = 'title: ';
-    // formSpace.appendChild(formTitle);
+    //create author + input
 
-    // //title input
-    // let titleInput = document.createElement('input');
-    // titleInput.setAttribute('type', 'text');
-    // titleInput.setAttribute('name', 'title');
-    // titleInput.setAttribute('id', 'titleinput')
-    // formSpace.appendChild(titleInput);
+    createformElement({
+        elementType: 'text',
+        attributeArray: [
+            {
+                attributeName: 'id',
+                value: 'formauthor'
+            }
+        ],
+        elementText: 'author : '
+    })
 
-    // //author
-    // let formAuthor = document.createElement('h3');
-    // formAuthor.setAttribute('id', 'formauthor');
-    // formAuthor.textContent = 'author: ';
-    // formSpace.appendChild(formAuthor);
+    createformElement({
+        elementType: 'input',
+        attributeArray: [
+            {
+                attributeName: 'type',
+                value: 'text'
+            },
+            {
+                attributeName: 'name',
+                value: 'author'
+            },
+            {
+                attributeName: 'id',
+                value: 'authorinput'
+            }
+        ]
+    })
 
-    // //author input
-    // let authorInput = document.createElement('input');
-    // authorInput.setAttribute('type', 'text');
-    // authorInput.setAttribute('name', 'author');
-    // authorInput.setAttribute('id', 'authorinput');
-    // formSpace.appendChild(authorInput);
+    //create year + input
 
-    // //year
-    // let formYear = document.createElement('h3');
-    // formYear.setAttribute('id', 'formyear');
-    // formYear.textContent = 'year: ';
-    // formSpace.appendChild(formYear);
+    createformElement({
+        elementType: 'text',
+        attributeArray: [
+            {
+                attributeName: 'id',
+                value: 'formyear'
+            }
+        ],
+        elementText: 'year : '
+    })
 
-    // //year input
-    // let yearInput = document.createElement('input');
-    // yearInput.setAttribute('type', 'text');
-    // yearInput.setAttribute('name', 'year');
-    // yearInput.setAttribute('id', 'yearinput');
-    // formSpace.appendChild(yearInput);
+    createformElement({
+        elementType: 'input',
+        attributeArray: [
+            {
+                attributeName: 'type',
+                value: 'text'
+            },
+            {
+                attributeName: 'name',
+                value: 'year'
+            },
+            {
+                attributeName: 'id',
+                value: 'yearinput'
+            }
+        ]
+    })
 
-    // //read
-    // let formRead = document.createElement('h3');
-    // formRead.setAttribute('id', 'formread');
-    // formRead.textContent = 'read: ';
-    // formSpace.appendChild(formRead);
+    //create read + input
 
-    // //read input
-    // let readInput = document.createElement('input');
-    // readInput.setAttribute('type', 'text');
-    // readInput.setAttribute('name', 'read');
-    // readInput.setAttribute('id', 'readinput');
-    // formSpace.appendChild(readInput);
+    createformElement({
+        elementType: 'text',
+        attributeArray: [
+            {
+                attributeName: 'id',
+                value: 'formread'
+            }
+        ],
+        elementText: 'read: '
+    })
 
-    // //form submit
-    // let submitInput = document.createElement('input');
-    // submitInput.setAttribute('type', 'submit');
-    // submitInput.setAttribute('name', 'submitinput');
-    // submitInput.setAttribute('id', 'submitinput');
-    // formSpace.appendChild(submitInput);
+    createformElement({
+        elementType: 'input',
+        attributeArray: [
+            {
+                attributeName: 'type',
+                value: 'radio'
+            },
+            {
+                attributeName: 'name',
+                value: 'read'
+            },
+            {
+                attributeName: 'id',
+                value: 'radioread'
+            },
+            {
+                attributeName: 'value',
+                value: 'true'
+            }
+        ]
+    })
+
+    
+
+    //create submit form button
+    createformElement({
+        elementType: 'button',
+        attributeArray: [
+            {
+                attributeName: 'type',
+                value: 'submit'
+            },
+            {
+                attributeName: 'name',
+                value: 'submit'
+            },
+            {
+                attributeName: 'id',
+                value: 'submitinput'
+            },
+        ],
+        elementText: 'submit'
+    })
+
+    let submitFormButton = document.getElementById('submitinput');
+    submitFormButton.addEventListener('click', function() {
+        let newBook = new Book();
+        newBook.title = document.getElementById('titleinput').value;
+        newBook.author = document.getElementById('authorinput').value;
+        newBook.year = document.getElementById('yearinput').value;
+
+        if (document.getElementById('radioread').checked == true) {
+            newBook.read = true;
+        } else {
+            newBook.read = false;
+        }
+
+        formSpace.innerHTML = '';
+
+        if (newBook.title && newBook.author) {
+            addBookToLibrary(newBook);
+        } else {
+            alert('title, author and read fields are required');
+        }
+    })
+
 }
-
-// function createFormElement(elementName, elementType, type, typeVal, name, nameVal, id, idVal) {
-//     let elementName = document.createElement(`${elementType}`);
-//     elementName.setAttribute(`${type}`, `${typeVal }`);
-//     elementName.setAttribute(`${name}`, `${nameVal }`);
-//     elementName.setAttribute(`${id}`, `${idVal }`);
-//     formSpace.appendChild(elementName);
-//
