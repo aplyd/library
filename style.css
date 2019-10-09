@@ -25,31 +25,51 @@
 
 #bookformtitle {
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
     margin: 0 auto;
     display: block;
+}
+
+#formtitle {
+    color: black;
+    display: inline;
 }
 
 #titleinput {
     text-align: center;
     margin: 0 auto;
-    display: block;
+    display: inline;
+}
+
+#formauthor {
+    color: black;
+    display: inline;
 }
 
 #authorinput {
     text-align: center;
     margin: 0 auto;
-    display: block;
+    display: inline;
+}
+
+#formyear {
+    color: black;
+    display: inline;
 }
 
 #yearinput {
     text-align: center;
     margin: 0 auto;
-    display: block;
+    display: inline;
+}
+
+#formread {
+    color: black;
+    display: inline;
 }
 
 #readinput {
     text-align: center;
     margin: 0 auto;
-    display: block;
+    display: inline;
 }

@@ -1,3 +1,5 @@
+
+
 let list = document.getElementById('list');
 let formSpace = document.getElementById('formspace');
 
@@ -60,33 +62,101 @@ function render() {
 
 render();
 
+function createformElement({elementName, elementType, attributeArray}) {
+    let element = document.createElement(`${elementType}`);
+    attributeArray.forEach(item => {
+        element.setAttribute(`${item.attributeName}`, `${item.value}`);
+    })
+    
+    formSpace.appendChild(element);
+}
+
 function showForm() {
     formSpace.innerHTML = '';
-    let bookFormTitle = document.createTextNode('h2');
-    bookFormTitle.textContent = 'book form';
-    formSpace.appendChild(bookFormTitle);
 
-    let titleInput = document.createElement('input');
-    titleInput.setAttribute('type', 'text');
-    titleInput.setAttribute('name', 'title');
-    titleInput.setAttribute('id', 'titleinput')
-    formSpace.appendChild(titleInput);
+    createformElement({
+        elementName: 'title',
+        elementType: 'input',
+        attributeArray: [
+            {
+                attributeName: 'type',
+                value: 'text'
+            },
+            {
+                attributeName: 'name',
+                value: 'title'
+            },
+            {
+                attributeName: 'id',
+                value: 'titleinput'
+            }
+        ]
+    })
 
-    let authorInput = document.createElement('input');
-    authorInput.setAttribute('type', 'text');
-    authorInput.setAttribute('name', 'author');
-    authorInput.setAttribute('id', 'authorinput');
-    formSpace.appendChild(authorInput);
+    // //title
+    // let formTitle = document.createElement('h3');
+    // formTitle.setAttribute('id', 'formtitle');
+    // formTitle.textContent = 'title: ';
+    // formSpace.appendChild(formTitle);
 
-    let yearInput = document.createElement('input');
-    yearInput.setAttribute('type', 'text');
-    yearInput.setAttribute('name', 'year');
-    yearInput.setAttribute('id', 'yearinput');
-    formSpace.appendChild(yearInput);
+    // //title input
+    // let titleInput = document.createElement('input');
+    // titleInput.setAttribute('type', 'text');
+    // titleInput.setAttribute('name', 'title');
+    // titleInput.setAttribute('id', 'titleinput')
+    // formSpace.appendChild(titleInput);
 
-    let readInput = document.createElement('input');
-    readInput.setAttribute('type', 'text');
-    readInput.setAttribute('name', 'read');
-    readInput.setAttribute('id', 'readinput');
-    formSpace.appendChild(readInput);
+    // //author
+    // let formAuthor = document.createElement('h3');
+    // formAuthor.setAttribute('id', 'formauthor');
+    // formAuthor.textContent = 'author: ';
+    // formSpace.appendChild(formAuthor);
+
+    // //author input
+    // let authorInput = document.createElement('input');
+    // authorInput.setAttribute('type', 'text');
+    // authorInput.setAttribute('name', 'author');
+    // authorInput.setAttribute('id', 'authorinput');
+    // formSpace.appendChild(authorInput);
+
+    // //year
+    // let formYear = document.createElement('h3');
+    // formYear.setAttribute('id', 'formyear');
+    // formYear.textContent = 'year: ';
+    // formSpace.appendChild(formYear);
+
+    // //year input
+    // let yearInput = document.createElement('input');
+    // yearInput.setAttribute('type', 'text');
+    // yearInput.setAttribute('name', 'year');
+    // yearInput.setAttribute('id', 'yearinput');
+    // formSpace.appendChild(yearInput);
+
+    // //read
+    // let formRead = document.createElement('h3');
+    // formRead.setAttribute('id', 'formread');
+    // formRead.textContent = 'read: ';
+    // formSpace.appendChild(formRead);
+
+    // //read input
+    // let readInput = document.createElement('input');
+    // readInput.setAttribute('type', 'text');
+    // readInput.setAttribute('name', 'read');
+    // readInput.setAttribute('id', 'readinput');
+    // formSpace.appendChild(readInput);
+
+    // //form submit
+    // let submitInput = document.createElement('input');
+    // submitInput.setAttribute('type', 'submit');
+    // submitInput.setAttribute('name', 'submitinput');
+    // submitInput.setAttribute('id', 'submitinput');
+    // formSpace.appendChild(submitInput);
 }
+
+// function createFormElement(elementName, elementType, type, typeVal, name, nameVal, id, idVal) {
+//     let elementName = document.createElement(`${elementType}`);
+//     elementName.setAttribute(`${type}`, `${typeVal }`);
+//     elementName.setAttribute(`${name}`, `${nameVal }`);
+//     elementName.setAttribute(`${id}`, `${idVal }`);
+//     formSpace.appendChild(elementName);
+//
