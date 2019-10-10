@@ -5,10 +5,13 @@
     padding-top: 20px
 }
 
-#addnew {
+#addnewbtn {
     margin: 0 auto;
+    align-items: center;
     justify-content: center;
-    text-align: center;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #container {
@@ -24,8 +27,11 @@ thead {
 }
 
 #formspace {
-    text-align: center;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto;
+    padding-left: 300px;
+    padding-right: 300px;
 }
 
 #bookformtitle {
