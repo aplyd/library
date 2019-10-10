@@ -55,9 +55,25 @@ function render() {
         tdyear.appendChild(document.createTextNode(book.year));
         tr.appendChild(tdyear);
 
-        let tdread = document.createElement('td');
-        tdread.appendChild(document.createTextNode(book.read));
-        tr.appendChild(tdread);
+        //read checkboxes
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        if (book.read == true) {
+            checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
+        }
+        tr.appendChild(checkbox);
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                book.read = true;
+                console.log(myLibrary);
+            } else {
+                book.read = false;
+                console.log(myLibrary);
+            }
+        })
         
         list.appendChild(tr);
     })
@@ -244,7 +260,7 @@ function showForm() {
         if (newBook.title && newBook.author) {
             addBookToLibrary(newBook);
         } else {
-            alert('title, author and read fields are required');
+            alert('title and author fields are required');
         }
     })
 
