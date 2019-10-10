@@ -78,3 +78,14 @@ thead {
     margin: 0 auto;
     display: inline;
 }
+
+#removex:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    text-align: center;
+}
+
+#removex {
+    text-align: center;
+}

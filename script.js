@@ -75,6 +75,17 @@ function render() {
             }
         })
         
+        //remove book
+        let tdremove = document.createElement('td');
+        tdremove.appendChild(document.createTextNode('X'));
+        tdremove.setAttribute('id', 'removex');
+        tr.appendChild(tdremove);
+
+        tdremove.addEventListener('click', function() {
+            myLibrary.splice(myLibrary.indexOf(book), 1);
+            render();
+        })
+
         list.appendChild(tr);
     })
 }
